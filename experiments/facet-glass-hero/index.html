@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Facet — Designed in glass</title>
+  <meta name="description" content="Facet is a fictional real-time material studio. A WebGL hero printed on thick smoked-glass shards." />
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.1.0/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="./style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="gl" aria-hidden="true"></canvas>
+
+  <!-- Second view: definitions. Comes first so :target can hide the page without JS. -->
+  <section id="paper" aria-labelledby="paper-title">
+    <div class="col">
+      <h2 id="paper-title">Real-time glass, in five terms.</h2>
+      <p><b>Iridescence</b> — A thin film on the surface that shifts hue with the viewing angle, like soap bubbles or coated lenses. It is driven by a film thickness range and the film's own index of refraction.</p>
+      <p><b>Index of refraction</b> — How strongly light bends as it enters the material. Water sits near 1.33, glass near 1.5 and diamond at 2.42; higher values pull reflections toward the edges.</p>
+      <p><b>Dispersion</b> — How the index changes across wavelengths, so each color bends a little differently and bright edges split into faint spectra. KHR_materials_dispersion expresses it as an Abbe number.</p>
+      <p><b>Transmission</b> — The share of light that passes through the surface instead of bouncing off it. Thickness and attenuation then tint and darken what is seen through deep glass.</p>
+      <p><b>Roughness</b> — Microscopic surface variation that scatters reflected and transmitted light. Zero is a perfect polish; higher values frost the glass and soften everything behind it.</p>
+    </div>
+    <a id="back" href="#"><span>← Back</span></a>
+  </section>
+
+  <main class="site">
+    <header id="navLayer" class="layer">
+      <span id="mark" class="t" aria-hidden="true"></span>
+      <span id="brand" class="t">Facet</span>
+      <nav class="links" aria-label="Primary">
+        <a id="nl0" class="t" href="#">Studio</a>
+        <a id="nl1" class="t" href="#">Materials</a>
+        <a id="nl2" class="t" href="#">Pricing</a>
+      </nav>
+      <a id="signin" class="t" href="#">Sign in</a>
+    </header>
+
+    <div id="panelLayer" class="layer">
+      <p id="eyebrow" class="t">REAL-TIME MATERIAL STUDIO</p>
+      <h1 id="h1" class="wrap"><span id="h1a" class="t">Designed</span> <span id="h1b" class="t">in glass.</span></h1>
+      <p id="sub" class="wrap"><span class="t sl">Author dispersion, transmission, and refraction in the browser. Live</span> <span class="t sl">previews, real materials.</span></p>
+      <div class="cta">
+        <a id="pill" class="t" href="#"><span>Open studio</span></a>
+        <a id="read" class="t" href="#paper">Read paper →</a>
+      </div>
+      <footer class="foot">
+        <span id="copy" class="t">© Facet Lab</span>
+        <span id="khr" class="t">KHR_materials_dispersion</span>
+      </footer>
+    </div>
+  </main>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

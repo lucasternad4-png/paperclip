@@ -1,0 +1,226 @@
+@font-face {
+  font-family: "Inter";
+  src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.1.0/files/inter-latin-wght-normal.woff2") format("woff2-variations"),
+       url("https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.1.0/files/inter-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #050507;
+  --glass: #17171b;
+  --ink: #e8e8ec;
+  --green: #36d67e;
+  --lavender: #b9abff;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+::selection { background: rgba(74, 128, 255, 0.42); }
+
+#gl { display: none; }
+
+/* ------------------------------------------------------------------ */
+/* Static version (reduced motion, no WebGL, no JS)                     */
+/* ------------------------------------------------------------------ */
+
+.site {
+  min-height: 100vh;
+  padding: 8.5vh 5.5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.layer {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 42%),
+    linear-gradient(200deg, rgba(150, 120, 255, 0.05), rgba(60, 220, 160, 0.03) 60%, rgba(0, 0, 0, 0)),
+    var(--glass);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+#navLayer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+  padding: 0 28px;
+}
+#mark {
+  width: 18px; height: 18px; border-radius: 4px;
+  background: linear-gradient(135deg, #f1f1f4 0 50%, #a9a9b3 50% 100%);
+}
+#brand { font-weight: 600; font-size: 18px; letter-spacing: -0.01em; }
+#navLayer .links { display: flex; gap: 32px; margin: 0 auto; }
+#navLayer .links a { color: rgba(255, 255, 255, 0.6); font-size: 14px; transition: color 0.15s; }
+#navLayer .links a:hover { color: rgba(255, 255, 255, 0.95); }
+#signin { font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.86); }
+
+#panelLayer {
+  flex: 1;
+  position: relative;
+  padding: clamp(28px, 6vw, 88px) clamp(20px, 4.5vw, 72px) 64px;
+}
+#eyebrow {
+  margin: 0 0 22px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.38);
+}
+#h1 {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(44px, 7.8vw, 118px);
+  letter-spacing: -0.045em;
+  line-height: 0.97;
+  padding-bottom: 0.1em;
+  background: linear-gradient(#dcdce0, #bdbdc3);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+#h1 span { display: block; }
+#sub { margin: 26px 0 0; max-width: 40em; font-size: 16px; line-height: 1.5; color: rgba(255, 255, 255, 0.55); }
+.cta { display: flex; align-items: center; gap: 26px; margin-top: 30px; }
+#pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 116px; height: 40px; border-radius: 6px;
+  background: #e8e8eb; color: #0a0a0c; font-size: 13px; font-weight: 500;
+  transition: background 0.15s;
+}
+#pill:hover, #pill:focus-visible { background: var(--green); }
+#read { font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.82); }
+#read:hover, #read:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+.foot {
+  position: absolute; left: clamp(20px, 4.5vw, 72px); right: clamp(20px, 4.5vw, 72px); bottom: 24px;
+  display: flex; justify-content: space-between;
+  font-size: 11px; color: rgba(255, 255, 255, 0.34);
+}
+
+#paper { display: none; }
+#paper:target, #paper.show { display: block; }
+#paper:target ~ .site, #paper.show ~ .site { display: none; }
+
+#paper {
+  min-height: 100vh;
+  padding: 18vh 8vw 10vh;
+}
+#paper .col { max-width: 38em; margin: 0 auto; }
+#paper h2 { margin: 0 0 22px; font-size: 26px; font-weight: 650; letter-spacing: -0.022em; color: #fff; }
+#paper p { margin: 0 0 18px; font-size: 15px; line-height: 1.72; color: rgba(255, 255, 255, 0.6); }
+#paper b { font-weight: 600; color: #fff; }
+#back {
+  position: absolute; top: 7vh; left: 8vw;
+  padding: 10px 20px; border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--glass);
+  font-size: 14px; font-weight: 500; color: #fff;
+}
+#back:hover, #back:focus-visible { color: var(--lavender); }
+
+@media (max-width: 640px) {
+  #navLayer .links { display: none; }
+  #signin { margin-left: auto; }
+  .cta { flex-wrap: wrap; }
+}
+
+/* ------------------------------------------------------------------ */
+/* WebGL version: text is printed on the glass by the renderer, the     */
+/* DOM copy below is transparent, selectable and carries the hit areas. */
+/* ------------------------------------------------------------------ */
+
+.gl, .gl body { height: 100%; overflow: hidden; }
+.gl #gl { display: block; position: fixed; inset: 0; width: 100vw; height: 100vh; }
+
+.gl .site { position: fixed; inset: 0; padding: 0; display: block; min-height: 0; pointer-events: none; }
+.booting .site, .booting #paper { visibility: hidden; }
+.gl .layer {
+  position: absolute; left: 0; top: 0;
+  padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none;
+  min-height: 0;
+  transform-origin: 0 0;
+  pointer-events: none;
+  display: block;
+}
+.gl .layer.off { visibility: hidden; }
+.gl .layer .wrap, .gl .layer .cta, .gl .layer .foot, .gl .layer .links {
+  position: absolute; -webkit-text-fill-color: transparent; left: 0; top: 0; margin: 0; padding: 0; display: block;
+  background: none; max-width: none;
+}
+.gl .layer .t {
+  position: absolute; margin: 0; padding: 0;
+  display: block;
+  white-space: nowrap;
+  line-height: 1;
+  color: transparent !important;
+  background: none !important;
+  -webkit-text-fill-color: transparent;
+  pointer-events: auto;
+  text-decoration: none !important;
+  transition: none;
+}
+.gl #mark { display: none; }
+.gl #pill { display: flex; align-items: center; justify-content: center; }
+.gl #pill span { line-height: 1; }
+.gl #read, .gl #pill, .gl .links a, .gl #signin { cursor: pointer; }
+.gl ::selection { background: rgba(74, 128, 255, 0.42); color: transparent; }
+.gl #paper ::selection { color: #fff; }
+
+.gl #paper {
+  display: block;
+  position: fixed; inset: 0;
+  min-height: 0; padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.gl #paper.show { opacity: 1; pointer-events: auto; transition: opacity 0.4s ease 0.28s; }
+.gl #paper ~ .site { display: block; }
+
+.gl #paper .col {
+  position: absolute;
+  left: 32.4vw; width: 33.9vw; max-width: none; margin: 0;
+  top: calc(35.9vh - 1.36vw * 0.864);
+}
+.gl #paper h2 { font-size: 1.36vw; line-height: 1; font-weight: 650; letter-spacing: -0.022em; margin: 0 0 1.6vw; }
+.gl #paper p { font-size: 0.73vw; line-height: 1.72; margin: 0 0 1.05vw; }
+
+/* The back button is a transparent hit area laid over the glass sliver. */
+.gl #back {
+  position: fixed; padding: 0; border: 0; border-radius: 0; background: none;
+  display: block;
+}
+.gl #back span {
+  position: absolute; transform: translate(-50%, -50%);
+  white-space: nowrap; line-height: 1;
+  font-size: 0.66vw; font-weight: 500; color: #fff;
+  transition: color 0.15s;
+}
+.gl #back:hover span, .gl #back:focus-visible span { color: var(--lavender); }
+.gl #back:focus-visible { outline: none; }
+
+@media (max-aspect-ratio: 1/1), (max-width: 860px) {
+  .gl #paper .col { left: 8vw; width: 84vw; top: 34vh; }
+  .gl #paper h2 { font-size: max(5.2vw, 20px); margin-bottom: 4vw; }
+  .gl #paper p { font-size: max(3.3vw, 13px); margin-bottom: 3.4vw; }
+  .gl #back span { font-size: max(3.4vw, 13px); }
+}
+@media (min-aspect-ratio: 1/1) and (min-width: 861px) and (max-width: 1300px) {
+  .gl #paper h2 { font-size: max(1.36vw, 16px); }
+  .gl #paper p { font-size: max(0.73vw, 11.5px); }
+  .gl #back span { font-size: max(0.66vw, 11px); }
+}
